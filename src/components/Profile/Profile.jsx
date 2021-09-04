@@ -1,15 +1,13 @@
 import React from "react";
 import s from "./Profile.module.css";
 import MyPosts from "./MyPosts/MyPosts";
+import ProfileInfo from "./ProfileInfo/ProfileInfo";
 
-const Profile = () => {
+const Profile = (props) => {
   return (
-    <div className={s.content}>
-      <div>My Profile</div>
-      <div className={s.ava}>
-        <img src="https://cdn.jpegmini.com/user/images/slider_puffin_before_mobile.jpg"></img>
-      </div>
-      <MyPosts />
+    <div>
+      <ProfileInfo />
+      <MyPosts posts={props.state.posts} addPost={props.addPost} />
     </div>
   );
 };
