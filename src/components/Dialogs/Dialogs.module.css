@@ -8,16 +8,37 @@
 }
 .dialog {
   padding: 5px;
+  display: flex;
 }
-
+.dialog img {
+  width: 40px;
+  height: 40px;
+  border-radius: 100%;
+}
 .dialog a {
+  align-items: center;
   text-decoration: none;
   color: white;
 }
 .dialog a.activeLink {
   color: gold;
 }
-
+.dialogNav {
+  margin-left: 5px;
+  display: flex;
+  align-items: center;
+}
 .messages {
   color: ghostwhite;
+}
+.blockOfMessages {
+  display: block;
+}
+.newMessageAdd {
+  margin-top: 20px;
+  display: flex;
+  gap: 10px;
+}
+.newMessageAdd button {
+  cursor: pointer;
 }
