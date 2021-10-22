@@ -1,29 +1,36 @@
 import React from "react";
 import s from "./MyPosts.module.css";
-import Post from "./Post/Post";
 import {addPostActionCreator, updateNewPostTextActionCreator} from "../../../redux/profile-reducer";
 import MyPosts from "./MyPosts";
+import StoreContext from "../../../StoreContext";
 
 
+const MyPostsContainer = () => {
+//скобки обязанны быть на новой строке
+    return (
+        <StoreContext.Consumer>
+            {
+                (store) => {
+                    debugger
+                    let state = store.getState()
 
-const MyPostsContainer = (props) => {
-    debugger
-    let state = props.store.getState()
+                    let addPost = () => {
+                        store.dispatch(addPostActionCreator());// изменение в state
+                    };
 
-  let newPostElement = React.createRef();
+                    let onPostChange = (text) => {
+                        let action = updateNewPostTextActionCreator(text)
+                        store.dispatch(action)
+                    }
+                    return (
+                        <MyPosts updateNewPostText={onPostChange} addPost={addPost} posts={state.profilePage.posts}
+                                 newPostText={state.profilePage.newPostText}/>
+                    )
+                }
 
-  let addPost = () => {
-    props.store.dispatch(addPostActionCreator());// изменение в state
+            }
 
-  };
-
-  let onPostChange= (text) =>{
-      let action = updateNewPostTextActionCreator(text)
-      props.store.dispatch(action)
-  }
-  return (
-    <MyPosts updateNewPostText={onPostChange} addPost={addPost} posts={state.profilePage.posts} newPostText={state.profilePage.newPostText}/>
-  );
+        </StoreContext.Consumer>)
 };
 
 export default MyPostsContainer;
